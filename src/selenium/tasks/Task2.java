@@ -19,10 +19,10 @@ public class Task2 {
         driver.get("https://kristinek.github.io/sitetasks/provide_feedback");
     }
 
-    @After
-    public void closeBrowser() {
-        driver.close();
-    }
+//    @After
+//    public void closeBrowser() {
+//        driver.close();
+//    }
 
     @Test
     public void initialFeedbackPage() throws Exception {

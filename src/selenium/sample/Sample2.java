@@ -55,6 +55,10 @@ public class Sample2 {
 //        System.out.println(driver.findElement(By.name("randomButton123")).getAttribute("value"));
     }
 
+
+
+
+
     @Test
     public void findElementByClassFirst() throws Exception {
         System.out.println(driver.findElement(By.className("text")).getText()); // "sample text 1"

@@ -37,7 +37,6 @@ public class Sample4Task {
     @Test
     public void enterNumber() throws Exception {
 //         TODO:
-//        enter a number under "Number"
 //        check that button is not clickable "Clear Result"
 //        check that text is not displayed
 //        click on "Result" button
@@ -46,6 +45,40 @@ public class Sample4Task {
 //        check that the button "Clear Result" is clickable now
 //        click on "Clear Result"
 //        check that the text is still (""), but it is not displayed
+
+        String numberToEnter = "27";
+//        enter a number under "Number"
+
+        driver.findElement(By.name("vfb-9")).clear();
+        driver.findElement(By.name("vfb-9")).sendKeys(numberToEnter);
+
+        assertFalse(driver.findElement(By.name("clear_result_button_number")).isEnabled());
+
+        assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
+
+        driver.findElement(By.id("result_button_number")).click();
+
+        assertTrue(driver.findElement(By.id("result_number")).isDisplayed());
+
+        assertEquals("You entered number: \"" + numberToEnter + "\"", driver.findElement(By.id("result_number")).getText());
+
+        assertTrue(driver.findElement(By.id("clear_result_button_number")).isEnabled());
+
+        driver.findElement(By.id("clear_result_button_number")).click();
+
+        assertEquals("", driver.findElement(By.id("result_number")).getText());
+
+        assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
+
+
+
+
+
+
+
+
+
+
     }
 
     @Test
@@ -55,5 +88,11 @@ public class Sample4Task {
 //        click on "This is a link to Homepage"
 //        check that current url is not base_url
 //        verify that current url is homepage
+
+        String homepage = "https://kristinek.github.io/site/";
+        assertEquals(base_url, driver.getCurrentUrl());
+        driver.findElement(By.id("homepage_link")).click();
+        assertNotEquals(base_url, driver.getCurrentUrl());
+        assertEquals(homepage, driver.getCurrentUrl());
     }
 }
