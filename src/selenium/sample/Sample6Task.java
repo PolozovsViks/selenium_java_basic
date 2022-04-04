@@ -11,7 +11,7 @@ import java.io.File;
 
 public class Sample6Task {
     WebDriver driver;
-//
+
     // method which is being run before each test
     @Before
     public void startingTests() throws Exception {
