@@ -49,7 +49,7 @@ public class Sample5Task {
 //        click ok on second alert
         newAlert.accept();
 //        verify that the correct page is opened
-
+//
         assertEquals("https://kristinek.github.io/site/examples/alerted_page", driver.getCurrentUrl());
 
 

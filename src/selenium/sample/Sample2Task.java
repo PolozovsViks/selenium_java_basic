@@ -72,6 +72,6 @@ public class Sample2Task {
         System.out.println(driver.findElements(By.className("test")).size());
         System.out.println(driver.findElement(By.className("test")).getText());
         System.out.println(driver.findElements(By.className("test")).get(2).getText());
-
+//
     }
 }

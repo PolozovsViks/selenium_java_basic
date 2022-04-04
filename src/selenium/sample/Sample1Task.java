@@ -17,7 +17,7 @@ public class Sample1Task {
 //         go to https://kristinek.github.io/site/index2.html
 //         get title of page
 //         get URL of current page
-//         close browser
+//         close browsera
         System.setProperty("webdriver.chrome.driver","C:\\Users\\Legion\\Desktop\\Accenture Boot\\Week 3\\lib\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://github.com/KristineK/selenium_java_basic/wiki/Setup");

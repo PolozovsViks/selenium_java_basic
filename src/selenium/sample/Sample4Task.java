@@ -48,7 +48,7 @@ public class Sample4Task {
 
         String numberToEnter = "27";
 //        enter a number under "Number"
-
+//
         driver.findElement(By.name("vfb-9")).clear();
         driver.findElement(By.name("vfb-9")).sendKeys(numberToEnter);
 

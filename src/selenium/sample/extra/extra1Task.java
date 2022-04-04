@@ -12,7 +12,7 @@ public class extra1Task {
     WebDriver driver;
     String base_url = "https://kristinek.github.io/site/examples/act";
     String new_url = "https://kristinek.github.io/site/examples/link1";
-
+//
     // method which is being run before each test
     @Before
     public void startingTests() throws Exception {

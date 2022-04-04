@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.io.File;
 
 import static org.junit.Assert.assertEquals;
-
+//
 public class Sample8Task {
     WebDriver driver;
 

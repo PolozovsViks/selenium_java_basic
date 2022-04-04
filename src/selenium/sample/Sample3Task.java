@@ -73,7 +73,7 @@ public class Sample3Task {
 //        check that it is False that value of second button is "This is a button"
         assertFalse(driver.findElement(By.id("buttonId")).getAttribute("value").equals("This is a button"));
     }
-
+//
     @Test
     public void failTask() throws Exception {
 //        TODO:
