@@ -5,18 +5,23 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
+import selenium.pages.LoadingColor;
+
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class Sample9Task {
     WebDriver driver;
+    static LoadingColor loadingColor;
 
     @Before
     public void openPage() {
@@ -26,42 +31,92 @@ public class Sample9Task {
         driver.get("https://kristinek.github.io/site/examples/loading_color");
     }
 
-    @After
-    public void closeBrowser() {
-        driver.close();
-    }
+//    @After
+//    public void closeBrowser() {
+//        driver.close();
+//    }
 
     @Test
     public void loadGreenSleep() throws Exception {
 //         TODO:
+
+        loadingColor = PageFactory.initElements(driver,LoadingColor.class);
+
+
+        Thread.sleep(500);
 //         * 1) click on start loading green button
-//         * 2) check that button does not appear,
-//         * but loading text is seen instead   "Loading green..."
-//         * 3) check that both button
-//         * and loading text is not seen,
-//         * success is seen instead "Green Loaded"
+        loadingColor.clickStartGreen();
+
+//         * 2) check that button does not appear, but loading text is seen instead   "Loading green..."
+        assertFalse(loadingColor.isStartGreenDisplayed());
+        assertTrue(loadingColor.isLoadingGreenDisplayed());
+        assertEquals("Loading green...", loadingColor.getLoadingGreenText());
+        Thread.sleep(5000);
+
+//         * 3) check that both button and loading text is not seen, success is seen instead "Green Loaded"
+        assertFalse(loadingColor.isStartGreenDisplayed());
+        assertFalse(loadingColor.isLoadingGreenDisplayed());
+
+        assertTrue(loadingColor.isFinishGreenDisplayed());
+        assertEquals("Green Loaded", loadingColor.getFinishGreenText());
+
     }
 
     @Test
     public void loadGreenImplicit() throws Exception {
 //         TODO:
 //         * 1) click on start loading green button
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.id("start_green")).click();
+
 //         * 2) check that button does not appear,
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
+
 //         * but loading text is seen instead   "Loading green..."
-//         * 3) check that both button
-//         * and loading text is not seen,
+        assertTrue(driver.findElement(By.id("loading_green")).isDisplayed());
+
+//         * 3) check that both button and loading text is not seen
 //         * success is seen instead "Green Loaded"
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        driver.findElement(By.id("finish_green"));
+        assertTrue(driver.findElement(By.id("finish_green")).isDisplayed());
+        assertEquals("Green Loaded", driver.findElement(By.id("finish_green")).getText());
+
+        assertFalse(driver.findElement(By.id("start_green")).isDisplayed());
+        assertFalse(driver.findElement(By.id("loading_green")).isDisplayed());
+
+
     }
 
     @Test
     public void loadGreenExplicitWait() throws Exception {
 //         TODO:
 //         * 1) click on start loading green button
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class);
+
+        WebElement startGreen = driver.findElement(By.id("start_green"));
+
+        startGreen.click();
+
 //         * 2) check that button does not appear,
+        assertFalse(startGreen.isDisplayed());
+
 //         * but loading text is seen instead   "Loading green..."
+        WebElement loadingGreen = driver.findElement(By.id("loading_green"));
+        assertTrue(loadingGreen.isDisplayed());
+        assertEquals("Loading green...", loadingGreen.getText());
+
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("finish_green")));
+        assertFalse(loadingGreen.isDisplayed());
+        assertFalse(loadingGreen.isDisplayed());
+        WebElement finishGreen = driver.findElement(By.id("finish_green"));
+        assertTrue(finishGreen.isDisplayed());
+        assertEquals("Green Loaded", finishGreen.getText());
+
     }
 
     @Test

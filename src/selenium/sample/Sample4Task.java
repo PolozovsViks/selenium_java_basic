@@ -29,10 +29,10 @@ public class Sample4Task {
     }
 
     // method which is being run after each test
-    @After
-    public void endingTests() throws Exception {
-        driver.close();
-    }
+//    @After
+//    public void endingTests() throws Exception {
+//        driver.close();
+//    }
 
     @Test
     public void enterNumber() throws Exception {
@@ -51,8 +51,6 @@ public class Sample4Task {
 //
         driver.findElement(By.name("vfb-9")).clear();
         driver.findElement(By.name("vfb-9")).sendKeys(numberToEnter);
-
-        assertFalse(driver.findElement(By.name("clear_result_button_number")).isEnabled());
 
         assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
 
