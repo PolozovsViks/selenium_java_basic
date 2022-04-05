@@ -31,10 +31,10 @@ public class Sample9Task {
         driver.get("https://kristinek.github.io/site/examples/loading_color");
     }
 
-//    @After
-//    public void closeBrowser() {
-//        driver.close();
-//    }
+    @After
+    public void closeBrowser() {
+        driver.close();
+    }
 
     @Test
     public void loadGreenSleep() throws Exception {

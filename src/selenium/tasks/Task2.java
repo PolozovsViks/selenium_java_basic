@@ -25,10 +25,10 @@ public class Task2 {
         driver.get("https://kristinek.github.io/site/tasks/provide_feedback");
     }
 
-//    @After
-//    public void closeBrowser() {
-//        driver.close();
-//    }
+    @After
+    public void closeBrowser() {
+        driver.close();
+    }
 
     @Test
     public void initialFeedbackPage() throws Exception {
@@ -193,7 +193,6 @@ public class Task2 {
 
 
 //         click "Send"
-
         driver.findElement(By.xpath("//*[@id='fb_form']/form/button")).click();
         Thread.sleep(500);
 
@@ -201,9 +200,8 @@ public class Task2 {
         driver.findElement(By.xpath("//*[@id='fb_thx']/div/div[2]/button[2]")).click();
 
 //         check fields are filled correctly
-
-        assertEquals("", driver.findElement(By.xpath("//*[@id='fb_name']")).getText());
-        assertEquals("", driver.findElement(By.id("fb_age")).getText());
+        assertEquals("test", driver.findElement(By.xpath("//*[@id='fb_name']")).getAttribute("value"));
+        assertEquals("27", driver.findElement(By.id("fb_age")).getAttribute("value"));
 
         assertTrue(driver.findElement(By.xpath("//*[@id='lang_check']/input[1]")).isSelected());
         assertFalse(driver.findElement(By.xpath("//*[@id='lang_check']/input[2]")).isSelected());
@@ -215,7 +213,7 @@ public class Task2 {
 
         assertTrue(driver.findElement(By.xpath("//*[@id='like_us']/option[2]")).isSelected());
 
-        assertEquals("",driver.findElement(By.xpath("//*[@id='fb_form']/form/div[6]/textarea")).getText());
+        assertEquals("Test comment comment test",driver.findElement(By.xpath("//*[@id='fb_form']/form/div[6]/textarea")).getAttribute("value"));
 
 
     }

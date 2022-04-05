@@ -18,10 +18,10 @@ public class extra2Task {
     WebDriver driver;
     String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
 
-//    @After
-//    public void endingTests() throws Exception {
-//        driver.close();
-//    }
+    @After
+    public void endingTests() throws Exception {
+        driver.close();
+    }
 
     @Test
     public void runningOnFirefox() throws Exception {

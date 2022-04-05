@@ -30,10 +30,10 @@ public class extra1Task {
     }
 
     // method which is being run after each test
-//    @After
-//    public void endingTests() throws Exception {
-//        driver.close();
-//    }
+    @After
+    public void endingTests() throws Exception {
+        driver.close();
+    }
 
     @Test
     public void navigateBack() throws Exception {

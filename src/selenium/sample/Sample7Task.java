@@ -34,10 +34,10 @@ public class Sample7Task {
     }
 //
     // method which is being run after each test
-//    @After
-//    public void endingTests() throws Exception {
-//        driver.close();
-//    }
+    @After
+    public void endingTests() throws Exception {
+        driver.close();
+    }
 
     @Test
     public void selectCheckBox() throws Exception {
